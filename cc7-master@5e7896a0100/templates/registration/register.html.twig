@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username, {
+            label: 'Username'
+        }) }}
+        {{ form_row(registrationForm.nom, {
+            label: 'Nom'
+        }) }}
+        {{ form_row(registrationForm.prenom, {
+            label: 'Prenom'
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+
+        {# Add a dropdown for selecting the role #}
+        {{ form_label(registrationForm.role, 'Role') }}
+        {{ form_widget(registrationForm.role, {
+            attr: { class: 'form-control' },
+            empty_value: 'Choose a role'
+        }) }}
+         {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

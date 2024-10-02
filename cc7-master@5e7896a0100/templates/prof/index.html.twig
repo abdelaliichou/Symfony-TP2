@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Display proffessors{% endblock %}
+
+{% block body %}
+    <h1>Display proffessors</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ path('app_prof_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_prof_edit', {'id': user.id}) }}">edit role </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prof_new') }}">Create new</a>
+{% endblock %}

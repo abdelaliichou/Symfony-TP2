@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subscribed students{% endblock %}
+
+{% block body %}
+    <h1>Subscribed students in the cours of {{lesson.name}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.username }}</td>
+                <td>{{ student.prenom }}</td>
+                <td>{{ student.nom }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if 'professor' in app.user.role %}
+            <a href="{{ path('app_lesson_new') }}">Create new</a>
+    {% endif %}
+
+    <a href="{{ path('app_logout') }}">Logout</a>
+{% endblock %}

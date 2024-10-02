@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lesson index{% endblock %}
+
+{% block body %}
+    <h1>Lesson index</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.name }}</td>
+                <td>{{ lesson.description }}</td>
+            
+               <td>
+                    <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
+                {% if 'professor' in app.user.role or 'admin' in app.user.role %}
+                    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
+                    <a href="{{ path('app_lesson_display_students', {'id': lesson.id}) }}">Display students</a>
+                {% endif %}
+                {% if 'Etudiant' in app.user.role %}
+                    <a href="{{ path('app_lesson_subscribe', {'id': lesson.id}) }}">Subscribe</a>
+                    <a href="{{ path('app_lesson_unsubscribe', {'id': lesson.id}) }}">Unsubscribe</a>
+                {% endif %}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if 'professor' in app.user.role or 'admin' in app.user.role %}
+            <a href="{{ path('app_lesson_new') }}">Create new</a>
+    {% endif %}
+    <a href="{{ path('app_logout') }}">Logout</a>
+{% endblock %}

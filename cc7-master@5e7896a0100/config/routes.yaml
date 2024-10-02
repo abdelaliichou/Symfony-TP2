@@ -1,0 +1,15 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute 
+index:
+    path: /lesson
+    controller: App\Controller\LessonController::index
+
+app_logout:
+    path: /logout
+    controller: App\Controller\AuthController::logout
+app_myLesson_display:
+    path: /displayMyLessons
+    controller: App\Controller\LessonController::displayMyLessons

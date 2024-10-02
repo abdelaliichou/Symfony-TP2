@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Lesson{% endblock %}
+
+{% block body %}
+    <h1>My Lesson</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th> 
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.name }}</td>
+                <td>{{ lesson.description }}</td>
+            
+               <td>
+                    <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
+                    <a href="{{ path('app_lesson_unsubscribe', {'id': lesson.id}) }}">Unsubscribe</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_logout') }}">Logout</a>
+{% endblock %}
